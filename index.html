@@ -35,17 +35,18 @@ h2 {
 .container {
   max-width: 1000px;
   margin: auto;
-  padding: 20px;
+  padding: 20px 30px; /* ⬅️ ini bikin kiri kanan lega */
 }
 
 /* BUTTON MENU */
 .menu {
   display: flex;
-  justify-content: center;   /* posisi horizontal tengah */
-  align-items: center;
-  gap: 12px;
+  justify-content: space-evenly; /* ⬅️ biar nyebar kiri–kanan */
+  align-items: flex-start;
+  gap: 40px; /* ⬅️ jarak antar project lebih lega */
   flex-wrap: wrap;
-  margin-top: 20px;
+  margin-top: 30px;
+  padding: 0 20px; /* ⬅️ kasih jarak kiri kanan */
 }
 
   .menu-item {
@@ -55,16 +56,20 @@ h2 {
 }
 
 .menu-img {
-  width: 110px;
-  margin-bottom: 10px;
-  transition: 0.3s;
-  filter: drop-shadow(0 0 10px rgba(56,189,248,0.4));
+  width: 130px;
+  max-width: 100%;
+  margin-bottom: 12px;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 12px rgba(56,189,248,0.4));
 }
 
 .menu-img:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
+  opacity: 1;
+  filter: drop-shadow(0 0 18px rgba(56,189,248,0.7));
 }
-
+  
 .menu button {
   background: #38bdf8;
   border: none;
