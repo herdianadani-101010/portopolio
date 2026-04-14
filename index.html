@@ -17,22 +17,13 @@ body {
 
 header {
   text-align: center;
-  padding: 80px 20px;
-  background: radial-gradient(circle, #0f172a, #020617);
+  padding: 60px;
 }
 
 .profile {
-  width: 160px;
-  height: 160px;
+  width: 140px;
   border-radius: 50%;
-  object-fit: cover;
   border: 3px solid #38bdf8;
-  margin-bottom: 20px;
-}
-
-.logo {
-  width: 120px;
-  margin-bottom: 15px;
 }
 
 h1 { color: #38bdf8; }
@@ -40,44 +31,56 @@ h1 { color: #38bdf8; }
 .container {
   max-width: 1000px;
   margin: auto;
-  padding: 40px 20px;
-}
-
-.section-title {
-  color: #38bdf8;
-  margin-bottom: 20px;
-  font-size: 24px;
-}
-
-.card {
-  background: #1e293b;
   padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 20px;
 }
 
+/* BUTTON MENU */
+.menu {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.menu button {
+  background: #38bdf8;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #020617;
+  font-weight: bold;
+}
+
+/* SECTION */
+.section {
+  display: none;
+  margin-top: 20px;
+}
+
+.active {
+  display: block;
+}
+
+/* GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 10px;
 }
 
 .grid img {
   width: 100%;
-  height: 200px;
+  height: 180px;
   object-fit: cover;
+  border-radius: 8px;
+}
+
+.card {
+  background: #1e293b;
+  padding: 15px;
   border-radius: 10px;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  color: #64748b;
+  margin-top: 15px;
 }
 </style>
 </head>
@@ -87,133 +90,61 @@ footer {
 <header>
   <img src="dani_herdiana.png" class="profile">
   <h1>Dani Herdiana</h1>
-  <p>Electrical Engineer | IoT | Automation | Data Intelligence</p>
+  <p>IoT | Automation | Data Engineer</p>
 </header>
 
 <div class="container">
 
 <!-- ABOUT -->
-<div>
-  <div class="section-title">About</div>
-  <p>
-    Engineer specializing in IoT systems, automation, and data-driven monitoring.
-    Experienced in integrating hardware (ESP8266, sensors), cloud (Google Sheets),
-    and analytics (Power BI) into scalable operational systems.
-  </p>
+<h2>About</h2>
+<p>
+Engineer focused on IoT systems, automation, and data-driven monitoring.
+Building integrated system from sensor → cloud → dashboard.
+</p>
+
+<!-- MENU -->
+<div class="menu">
+  <button onclick="showSection('energy')">⚡ Energy Monitoring</button>
+  <button onclick="showSection('ews')">🌊 EWS Banjir</button>
+  <button onclick="showSection('robot')">🤖 ROBOT GA</button>
 </div>
 
-<br>
-
 <!-- ENERGY -->
-<div>
-  <div class="section-title">⚡ Energy Monitoring System</div>
-
+<div id="energy" class="section">
   <div class="card">
-    <p><b>System Overview:</b> Real-time electrical monitoring using ESP8266 + PZEM.</p>
-
-    <b>Architecture:</b>
-    <ul>
-      <li>PZEM Sensor → ESP8266 → WiFi</li>
-      <li>→ Google Apps Script → Google Sheets</li>
-      <li>→ Power BI Dashboard</li>
-    </ul>
-
-    <b>Flow:</b>
-    <ul>
-      <li>Sensor baca V, I, Power, kWh</li>
-      <li>ESP kirim data periodik</li>
-      <li>Data disimpan di cloud</li>
-      <li>Visualisasi dashboard</li>
-    </ul>
+    <h3>Energy Monitoring</h3>
+    <p>ESP8266 + PZEM → Google Sheets → Power BI</p>
   </div>
 
-  <div class="card grid">
+  <div class="grid">
     <img src="energy_monitoring1.png" loading="lazy">
     <img src="energy_monitoring2.png" loading="lazy">
     <img src="energy_monitoring3.png" loading="lazy">
   </div>
 </div>
 
-<br>
-
 <!-- EWS -->
-<div>
-  <div class="section-title">🌊 Flood Early Warning System</div>
-
+<div id="ews" class="section">
   <div class="card">
-    <p><b>System Overview:</b> Low-cost flood detection using float switch + IoT.</p>
-
-    <b>Architecture:</b>
-    <ul>
-      <li>Float Switch → ESP8266</li>
-      <li>→ Google Sheets (logging)</li>
-      <li>→ Telegram & WhatsApp Bot</li>
-    </ul>
-
-    <b>Flow:</b>
-    <ul>
-      <li>Air naik → switch aktif</li>
-      <li>ESP baca input digital</li>
-      <li>Kirim data ke cloud</li>
-      <li>Trigger notifikasi otomatis</li>
-    </ul>
+    <h3>Flood Early Warning System</h3>
+    <p>Float switch + ESP8266 + Telegram + WhatsApp</p>
   </div>
 
-  <div class="card grid">
-    <img src="ews1.png" loading="lazy">
-    <img src="ews2.png" loading="lazy">
-    <img src="ews3.png" loading="lazy">
+  <div class="grid">
+    <img src="ews_banjir1.png" loading="lazy">
+    <img src="ews_banjir2.png" loading="lazy">
+    <img src="ews_banjir3.png" loading="lazy">
   </div>
 </div>
 
-<br>
-
-<!-- ROBOT GA -->
-<div>
-  <div class="section-title">🤖 ROBOT GA System</div>
-
+<!-- ROBOT -->
+<div id="robot" class="section">
   <div class="card">
-    <img src="robot-ga.png" class="logo">
-
-    <p><b>System Overview:</b> Integrated operational platform combining WhatsApp bot, IoT, and dashboard monitoring.</p>
-
-    <b>Architecture:</b>
-    <ul>
-      <li>User → WhatsApp</li>
-      <li>Bot Engine (Node.js)</li>
-      <li>Google Sheets (Database)</li>
-      <li>Web Dashboard (Monitoring)</li>
-      <li>Telegram (Notification)</li>
-    </ul>
-
-    <b>Flow System:</b>
-    <ul>
-      <li>User kirim laporan via WhatsApp</li>
-      <li>Bot klasifikasi & generate ticket</li>
-      <li>Data masuk Google Sheets</li>
-      <li>Operator update status</li>
-      <li>Notifikasi otomatis ke user & group</li>
-    </ul>
-
-    <b>Key Features:</b>
-    <ul>
-      <li>Auto ticketing system</li>
-      <li>Deterministic classification (no false positive)</li>
-      <li>SLA & rating tracking</li>
-      <li>Multi-role (User, Operator, Executive)</li>
-      <li>Integration: WhatsApp, Telegram, Google Sheets</li>
-    </ul>
-
-    <b>Business Impact:</b>
-    <ul>
-      <li>Automation tanpa intervensi manual</li>
-      <li>Transparansi operasional</li>
-      <li>Data-driven decision</li>
-      <li>Cost saving hingga ± Rp 1 Miliar</li>
-    </ul>
+    <h3>ROBOT GA</h3>
+    <p>WhatsApp bot + ticketing + dashboard + automation system</p>
   </div>
 
-  <div class="card grid">
+  <div class="grid">
     <img src="dashboard1.png" loading="lazy">
     <img src="dashboard2.png" loading="lazy">
     <img src="dashboard3.png" loading="lazy">
@@ -221,20 +152,14 @@ footer {
   </div>
 </div>
 
-<br>
-
-<!-- CONTACT -->
-<div>
-  <div class="section-title">Contact</div>
-  <p>Email: herdiana.dani@gmail.com</p>
-  <p>WhatsApp: 082121236094</p>
 </div>
 
-</div>
-
-<footer>
-© 2026 Dani Herdiana
-</footer>
+<script>
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+</script>
 
 </body>
 </html>
