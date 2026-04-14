@@ -55,11 +55,11 @@ h2 {
   align-items: center;
 }
 
-/* ✅ FIX: SAMAKAN TINGGI GAMBAR */
+/* GAMBAR MENU */
 .menu-img {
   width: 130px;
-  height: 100px; /* ⬅️ ini kunci sejajar */
-  object-fit: contain; /* ⬅️ tidak kepotong */
+  height: 100px;
+  object-fit: contain;
   margin-bottom: 12px;
   opacity: 0.9;
   transition: all 0.3s ease;
@@ -72,6 +72,7 @@ h2 {
   filter: drop-shadow(0 0 18px rgba(56,189,248,0.7));
 }
 
+/* BUTTON */
 .menu button {
   background: #38bdf8;
   border: none;
@@ -88,7 +89,7 @@ h2 {
   box-shadow: 0 6px 20px rgba(56,189,248,0.5);
 }
 
-/* ===== SECTION ANIMATION ===== */
+/* ===== SECTION ===== */
 .section {
   display: none;
   margin-top: 20px;
@@ -116,18 +117,19 @@ h2 {
   transform: translateY(-3px);
 }
 
-/* ===== GRID IMAGE ===== */
+/* ===== GRID ===== */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
   gap: 10px;
 }
 
-  /* WRAPPER */
+/* ===== IMAGE WRAPPER ===== */
 .img-wrap {
   position: relative;
   overflow: hidden;
   border-radius: 8px;
+  cursor: pointer; /* ⬅️ klik area */
 }
 
 /* IMAGE */
@@ -137,10 +139,11 @@ h2 {
   object-fit: contain;
   background: #020617;
   transition: 0.3s;
-  cursor: pointer;
+
+  pointer-events: none; /* ⬅️ penting: klik tembus ke wrapper */
 }
 
-/* ZOOM BUTTON */
+/* ZOOM BUTTON (visual only) */
 .zoom-btn {
   position: absolute;
   bottom: 10px;
@@ -153,7 +156,8 @@ h2 {
   font-weight: 600;
   opacity: 0;
   transition: 0.3s;
-  cursor: pointer;
+
+  pointer-events: none; /* ⬅️ penting */
 }
 
 /* HOVER EFFECT */
@@ -161,8 +165,27 @@ h2 {
   opacity: 1;
 }
 
-  .img-wrap:hover img {
+.img-wrap:hover img {
   transform: scale(1.08);
+}
+
+/* ===== LIGHTBOX ANIMATION ===== */
+#lightbox {
+  animation: fadeIn 0.25s ease;
+}
+
+#lightbox img {
+  animation: zoomIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.85) }
+  to { transform: scale(1) }
 }
 </style>
 </head>
@@ -469,33 +492,33 @@ with high operational impact in real-world environments.
 </div>
 
  <script>
-const lightbox = document.getElementById('lightbox');
+document.addEventListener("DOMContentLoaded", () => {
 
-if (lightbox) {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
 
-  // klik gambar
-  document.querySelectorAll('.img-wrap img').forEach(img => {
-    img.addEventListener('click', () => {
-      lightbox.style.display = 'flex';
-      document.getElementById('lightbox-img').src = img.src;
+  // klik SEMUA area (gambar + tombol + wrapper)
+  document.querySelectorAll('.img-wrap').forEach(wrap => {
+
+    wrap.addEventListener('click', () => {
+      const img = wrap.querySelector('img');
+
+      if (img) {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+      }
     });
+
   });
 
-  // 🔥 klik tombol view
-  document.querySelectorAll('.zoom-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const img = btn.previousElementSibling; // ambil gambar di atasnya
-      lightbox.style.display = 'flex';
-      document.getElementById('lightbox-img').src = img.src;
-      e.stopPropagation(); // biar tidak double trigger
-    });
+  // klik luar gambar = close
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      lightbox.style.display = 'none';
+    }
   });
 
-  // klik background untuk close
-  lightbox.addEventListener('click', () => {
-    lightbox.style.display = 'none';
-  });
-}
+});
 </script>
 
 <script>
