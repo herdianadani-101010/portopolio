@@ -30,6 +30,11 @@ header {
   margin-bottom: 20px;
 }
 
+.logo {
+  width: 120px;
+  margin-bottom: 15px;
+}
+
 h1 { color: #38bdf8; }
 
 .container {
@@ -59,7 +64,14 @@ h1 { color: #38bdf8; }
 
 .grid img {
   width: 100%;
+  height: 200px;
+  object-fit: cover;
   border-radius: 10px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 footer {
@@ -84,78 +96,73 @@ footer {
 <div>
   <div class="section-title">About</div>
   <p>
-    Engineer specializing in IoT-based monitoring, automation systems, and data integration.
-    Experienced in building real-time systems combining hardware, cloud, and analytics.
+    Engineer specializing in IoT systems, automation, and data-driven monitoring.
+    Experienced in integrating hardware (ESP8266, sensors), cloud (Google Sheets),
+    and analytics (Power BI) into scalable operational systems.
   </p>
 </div>
 
 <br>
 
-<!-- ENERGY MONITORING -->
+<!-- ENERGY -->
 <div>
   <div class="section-title">⚡ Energy Monitoring System</div>
 
   <div class="card">
-    <p>
-      IoT-based electrical monitoring system using ESP8266 (Wemos) and PZEM-004T sensors.
-    </p>
+    <p><b>System Overview:</b> Real-time electrical monitoring using ESP8266 + PZEM.</p>
 
+    <b>Architecture:</b>
     <ul>
-      <li>Measure voltage, current, power, energy (kWh)</li>
-      <li>Data sent to Google Sheets (real-time logging)</li>
-      <li>Dashboard visualization using Power BI</li>
-      <li>Multi-panel monitoring (LVMDP, sub panel)</li>
+      <li>PZEM Sensor → ESP8266 → WiFi</li>
+      <li>→ Google Apps Script → Google Sheets</li>
+      <li>→ Power BI Dashboard</li>
     </ul>
 
-    <p><b>Architecture:</b></p>
+    <b>Flow:</b>
     <ul>
-      <li>Sensor → ESP8266 → WiFi → Google Apps Script → Google Sheets</li>
-      <li>Dashboard: Power BI</li>
+      <li>Sensor baca V, I, Power, kWh</li>
+      <li>ESP kirim data periodik</li>
+      <li>Data disimpan di cloud</li>
+      <li>Visualisasi dashboard</li>
     </ul>
   </div>
 
-  <div class="card">
-    <div class="grid">
-      <img src="energy_monitoring1.png">
-      <img src="energy_monitoring2.png">
-      <img src="energy_monitoring3.png">
-    </div>
+  <div class="card grid">
+    <img src="energy_monitoring1.png" loading="lazy">
+    <img src="energy_monitoring2.png" loading="lazy">
+    <img src="energy_monitoring3.png" loading="lazy">
   </div>
 </div>
 
 <br>
 
-<!-- EWS BANJIR -->
+<!-- EWS -->
 <div>
-  <div class="section-title">🌊 Flood Early Warning System (EWS)</div>
+  <div class="section-title">🌊 Flood Early Warning System</div>
 
   <div class="card">
-    <p>
-      Low-cost flood detection system using 4 float switches and ESP8266 (Wemos D1),
-      integrated with Telegram and WhatsApp bot for real-time alerting.
-    </p>
+    <p><b>System Overview:</b> Low-cost flood detection using float switch + IoT.</p>
 
+    <b>Architecture:</b>
     <ul>
-      <li>4 level detection: Aman, Siaga 3, Siaga 2, Siaga 1</li>
-      <li>Realtime notification (Telegram & WhatsApp)</li>
-      <li>Data logging to Google Sheets</li>
-      <li>Cost implementation ± Rp 120.000</li>
+      <li>Float Switch → ESP8266</li>
+      <li>→ Google Sheets (logging)</li>
+      <li>→ Telegram & WhatsApp Bot</li>
     </ul>
 
-    <p><b>Working Principle:</b></p>
+    <b>Flow:</b>
     <ul>
-      <li>Float switch triggers based on water level</li>
-      <li>ESP8266 reads digital input</li>
-      <li>Data sent to cloud + notification triggered</li>
+      <li>Air naik → switch aktif</li>
+      <li>ESP baca input digital</li>
+      <li>Kirim data ke cloud</li>
+      <li>Trigger notifikasi otomatis</li>
     </ul>
   </div>
 
-  <div class="card">
-    <div class="grid">
-      <img src="ews1.png">
-      <img src="ews2.png">
-      <img src="ews3.png">
-    </div>
+  <div class="card grid">
+    <img src="ews1.png" loading="lazy">
+    <img src="ews2.png" loading="lazy">
+    <img src="ews3.png" loading="lazy">
   </div>
 </div>
 
@@ -166,12 +173,51 @@ footer {
   <div class="section-title">🤖 ROBOT GA System</div>
 
   <div class="card">
+    <img src="robot-ga.png" class="logo">
+
+    <p><b>System Overview:</b> Integrated operational platform combining WhatsApp bot, IoT, and dashboard monitoring.</p>
+
+    <b>Architecture:</b>
     <ul>
-      <li>WhatsApp-based ticketing system</li>
-      <li>IoT automation integration</li>
-      <li>Dashboard monitoring & SLA tracking</li>
-      <li>Cost saving up to ± Rp 1 Miliar (in-house)</li>
+      <li>User → WhatsApp</li>
+      <li>Bot Engine (Node.js)</li>
+      <li>Google Sheets (Database)</li>
+      <li>Web Dashboard (Monitoring)</li>
+      <li>Telegram (Notification)</li>
     </ul>
+
+    <b>Flow System:</b>
+    <ul>
+      <li>User kirim laporan via WhatsApp</li>
+      <li>Bot klasifikasi & generate ticket</li>
+      <li>Data masuk Google Sheets</li>
+      <li>Operator update status</li>
+      <li>Notifikasi otomatis ke user & group</li>
+    </ul>
+
+    <b>Key Features:</b>
+    <ul>
+      <li>Auto ticketing system</li>
+      <li>Deterministic classification (no false positive)</li>
+      <li>SLA & rating tracking</li>
+      <li>Multi-role (User, Operator, Executive)</li>
+      <li>Integration: WhatsApp, Telegram, Google Sheets</li>
+    </ul>
+
+    <b>Business Impact:</b>
+    <ul>
+      <li>Automation tanpa intervensi manual</li>
+      <li>Transparansi operasional</li>
+      <li>Data-driven decision</li>
+      <li>Cost saving hingga ± Rp 1 Miliar</li>
+    </ul>
+  </div>
+
+  <div class="card grid">
+    <img src="dashboard1.png" loading="lazy">
+    <img src="dashboard2.png" loading="lazy">
+    <img src="dashboard3.png" loading="lazy">
+    <img src="dashboard4.png" loading="lazy">
   </div>
 </div>
 
@@ -180,8 +226,8 @@ footer {
 <!-- CONTACT -->
 <div>
   <div class="section-title">Contact</div>
-  <p>Email: your@email.com</p>
-  <p>WhatsApp: 08xxxxxxxxxx</p>
+  <p>Email: herdiana.dani@gmail.com</p>
+  <p>WhatsApp: 082121236094</p>
 </div>
 
 </div>
