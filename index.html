@@ -2,559 +2,1131 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Dani Herdiana | Portfolio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+<title>Dani Herdiana | IoT & Automation Portfolio</title>
+<meta name="description" content="Portfolio of Dani Herdiana, focused on IoT monitoring, industrial automation, realtime alerting, dashboards, and backend integration.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+:root {
+  --bg: #071013;
+  --surface: #0d1b1e;
+  --surface-2: #122529;
+  --line: rgba(188, 210, 206, 0.15);
+  --text: #edf7f4;
+  --muted: #9bb0ad;
+  --accent: #2dd4bf;
+  --accent-2: #f59e0b;
+  --accent-3: #60a5fa;
+  --danger: #fb7185;
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: 'Poppins', sans-serif;
-  background: #020617;
-  color: #e2e8f0;
   margin: 0;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(45, 212, 191, 0.14), transparent 28rem),
+    radial-gradient(circle at 80% 10%, rgba(245, 158, 11, 0.11), transparent 24rem),
+    linear-gradient(135deg, #071013 0%, #0b1517 45%, #101814 100%);
+  line-height: 1.65;
 }
 
-header {
-  text-align: center;
-  padding: 60px;
+img {
+  display: block;
+  max-width: 100%;
 }
 
-.profile {
-  width: 140px;
-  border-radius: 50%;
-  border: 3px solid #38bdf8;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-h1 { color: #38bdf8; }
-
-h2 {
-  color: #38bdf8;
+.page {
+  min-height: 100vh;
 }
 
-.container {
-  max-width: 1000px;
-  margin: auto;
-  padding: 20px 30px;
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid var(--line);
+  background: rgba(7, 16, 19, 0.86);
+  backdrop-filter: blur(18px);
 }
 
-/* ===== MENU PROJECT ===== */
-.menu {
+.nav-inner {
+  width: min(1180px, calc(100% - 32px));
+  min-height: 68px;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  gap: 40px;
-  flex-wrap: wrap;
-  margin-top: 30px;
-  padding: 0 20px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-.menu-item {
+.brand {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(45, 212, 191, 0.38);
+  border-radius: 8px;
+  color: var(--accent);
+  background: rgba(45, 212, 191, 0.08);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.nav-links a {
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.hero {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  min-height: calc(100vh - 68px);
+  padding: 54px 0 42px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(320px, 0.76fr);
+  gap: 34px;
   align-items: center;
 }
 
-/* GAMBAR MENU */
-.menu-img {
-  width: 130px;
-  height: 100px;
-  object-fit: contain;
-  margin-bottom: 12px;
-  opacity: 0.9;
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 0 12px rgba(56,189,248,0.4));
-}
-
-.menu-img:hover {
-  transform: scale(1.08);
-  opacity: 1;
-  filter: drop-shadow(0 0 18px rgba(56,189,248,0.7));
-}
-
-/* BUTTON */
-.menu button {
-  background: #38bdf8;
-  border: none;
-  padding: 10px 15px;
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  margin: 0 0 18px;
+  padding: 7px 10px;
+  border: 1px solid rgba(45, 212, 191, 0.28);
   border-radius: 8px;
+  color: #b9fff4;
+  background: rgba(45, 212, 191, 0.08);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 6px rgba(45, 212, 191, 0.13);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  letter-spacing: 0;
+  line-height: 1.08;
+}
+
+h1 {
+  max-width: 760px;
+  font-size: clamp(42px, 7vw, 78px);
+  font-weight: 800;
+}
+
+.hero-copy {
+  max-width: 710px;
+  margin: 22px 0 0;
+  color: #c9d9d6;
+  font-size: 18px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 800;
   cursor: pointer;
-  color: #020617;
-  font-weight: bold;
-  transition: 0.3s;
+  transition: transform 0.2s ease, background 0.2s ease, border 0.2s ease;
 }
 
-.menu button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(56,189,248,0.5);
+.btn:hover {
+  transform: translateY(-2px);
 }
 
-/* ===== SECTION ===== */
-.section {
-  display: none;
-  margin-top: 20px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.4s ease;
+.btn-primary {
+  color: #051113;
+  background: var(--accent);
 }
 
-.section.active {
+.btn-secondary {
+  color: var(--text);
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.hero-panel {
+  position: relative;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(13, 27, 30, 0.72);
+  box-shadow: var(--shadow);
+}
+
+.profile-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: #081214;
+}
+
+.profile-frame img {
+  width: 100%;
+  aspect-ratio: 4 / 4.5;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.status-strip {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.status-item {
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(4, 12, 14, 0.82);
+}
+
+.status-item strong {
   display: block;
+  font-size: 18px;
+  line-height: 1.1;
+}
+
+.status-item span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.25;
+}
+
+section {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 70px 0;
+}
+
+.section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 26px;
+}
+
+.section-kicker {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-size: clamp(28px, 4vw, 44px);
+}
+
+.section-desc {
+  max-width: 480px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  gap: 18px;
+}
+
+.panel,
+.project-card,
+.skill-group,
+.focus-item {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(13, 27, 30, 0.72);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.18);
+}
+
+.panel {
+  padding: 24px;
+}
+
+.panel p {
+  margin: 0;
+  color: #c9d9d6;
+}
+
+.panel p + p {
+  margin-top: 16px;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.metric {
+  min-height: 112px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.metric strong {
+  display: block;
+  color: var(--accent-2);
+  font-size: 28px;
+  line-height: 1;
+}
+
+.metric span {
+  display: block;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.project-menu {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.project-tab {
+  min-height: 150px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  background: var(--surface);
+  cursor: pointer;
+  text-align: left;
+}
+
+.project-tab img {
+  width: 100%;
+  height: 76px;
+  object-fit: cover;
+  background: #071013;
+  opacity: 0.74;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.project-tab span {
+  display: block;
+  padding: 12px;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.project-tab:hover img,
+.project-tab.active img {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+.project-tab.active {
+  border-color: rgba(45, 212, 191, 0.6);
+  box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.10);
+}
+
+.project-section {
+  display: none;
+}
+
+.project-section.active {
+  display: block;
+  animation: rise 0.26s ease;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-card {
+  overflow: hidden;
+}
+
+.project-body {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+  gap: 0;
+}
+
+.project-content {
+  padding: 26px;
+}
+
+.project-content h3 {
+  font-size: 26px;
+}
+
+.project-content p {
+  margin: 14px 0 0;
+  color: #c9d9d6;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: #dce9e6;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.feature-list {
+  display: grid;
+  gap: 10px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feature-list li {
+  position: relative;
+  padding-left: 24px;
+  color: #d5e2df;
+}
+
+.feature-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 3px;
+  background: var(--accent);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+}
+
+.gallery.single {
+  grid-template-columns: 1fr;
+}
+
+.img-wrap {
+  position: relative;
+  min-height: 220px;
+  overflow: hidden;
+  background: #071013;
+  cursor: zoom-in;
+}
+
+.img-wrap img {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  object-fit: cover;
+  transition: transform 0.24s ease, filter 0.24s ease;
+}
+
+.img-wrap:hover img {
+  transform: scale(1.04);
+  filter: brightness(1.08);
+}
+
+.zoom-label {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 0 10px;
+  border-radius: 8px;
+  color: #061114;
+  background: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.img-wrap:hover .zoom-label {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ===== CARD ===== */
-.card {
-  background: #1e293b;
-  padding: 15px;
-  border-radius: 12px;
-  margin-top: 15px;
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-3px);
-}
-
-/* ===== GRID ===== */
-.grid {
+.skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-  gap: 10px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
 }
 
-/* ===== IMAGE WRAPPER ===== */
-.img-wrap {
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-  cursor: pointer; /* ⬅️ klik area */
+.skill-group {
+  padding: 20px;
 }
 
-/* IMAGE */
-.img-wrap img {
-  width: 100%;
-  height: 180px;
+.skill-group h3 {
+  margin-bottom: 14px;
+  font-size: 17px;
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.focus-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.focus-item {
+  min-height: 116px;
+  padding: 20px;
+}
+
+.focus-item strong {
+  display: block;
+  font-size: 17px;
+}
+
+.focus-item span {
+  display: block;
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.footer {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 28px 0 46px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  text-align: center;
+  font-size: 14px;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.88);
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: min(1100px, 96vw);
+  max-height: 90vh;
   object-fit: contain;
-  background: #020617;
-  transition: 0.3s;
-
-  pointer-events: none; /* ⬅️ penting: klik tembus ke wrapper */
-}
-
-/* ZOOM BUTTON (visual only) */
-.zoom-btn {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background: rgba(56,189,248,0.95);
-  color: #020617;
-  padding: 6px 12px;
   border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  opacity: 0;
-  transition: 0.3s;
-
-  pointer-events: none; /* ⬅️ penting */
+  box-shadow: var(--shadow);
 }
 
-/* HOVER EFFECT */
-.img-wrap:hover .zoom-btn {
-  opacity: 1;
+.lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  font-size: 24px;
 }
 
-.img-wrap:hover img {
-  transform: scale(1.08);
+@media (max-width: 980px) {
+  .hero,
+  .about-grid,
+  .project-body {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+
+  .project-menu,
+  .skills-grid,
+  .focus-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .status-strip {
+    position: static;
+    margin-top: 10px;
+  }
 }
 
-/* ===== LIGHTBOX ANIMATION ===== */
-#lightbox {
-  animation: fadeIn 0.25s ease;
-}
+@media (max-width: 680px) {
+  .nav-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 12px 0;
+  }
 
-#lightbox img {
-  animation: zoomIn 0.25s ease;
-}
+  .nav-links {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
 
-@keyframes fadeIn {
-  from { opacity: 0 }
-  to { opacity: 1 }
-}
+  .hero {
+    padding-top: 36px;
+  }
 
-@keyframes zoomIn {
-  from { transform: scale(0.85) }
-  to { transform: scale(1) }
+  .hero-actions,
+  .section-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .status-strip,
+  .metric-grid,
+  .project-menu,
+  .gallery,
+  .skills-grid,
+  .focus-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-tab {
+    min-height: 116px;
+  }
+
+  .project-tab img {
+    height: 62px;
+  }
 }
 </style>
 </head>
 
 <body>
+<div class="page">
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="Dani Herdiana portfolio home">
+        <span class="brand-mark">DH</span>
+        <span>Dani Herdiana</span>
+      </a>
+      <div class="nav-links" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#focus">Focus</a>
+      </div>
+    </div>
+  </nav>
 
-<header>
-  <img src="dani_herdiana.png" class="profile">
-  <h1>Dani Herdiana</h1>
-  <p>IoT | Automation | Data Engineer</p>
-</header>
+  <header class="hero" id="top">
+    <div>
+      <p class="eyebrow"><span class="pulse"></span>IoT, Automation, Backend Integration</p>
+      <h1>Building reliable systems for real operations.</h1>
+      <p class="hero-copy">
+        Electrical engineer focused on industrial automation, IoT monitoring, realtime alerting,
+        operational dashboards, ChatOps workflow, and production-ready backend integration.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#projects">View Projects</a>
+        <a class="btn btn-secondary" href="#skills">Technical Stack</a>
+      </div>
+    </div>
 
-<div class="container">
+    <aside class="hero-panel" aria-label="Profile summary">
+      <div class="profile-frame">
+        <img src="dani_herdiana.png" alt="Dani Herdiana portrait">
+      </div>
+      <div class="status-strip">
+        <div class="status-item">
+          <strong>IoT</strong>
+          <span>ESP8266, sensors, MQTT</span>
+        </div>
+        <div class="status-item">
+          <strong>API</strong>
+          <span>Node.js, webhook, REST</span>
+        </div>
+        <div class="status-item">
+          <strong>Ops</strong>
+          <span>VPS, PM2, Linux</span>
+        </div>
+      </div>
+    </aside>
+  </header>
 
-<!-- ABOUT -->
-<h2>About</h2>
-<p>
-An Electrical Engineer specializing in IoT systems, automation, and data-driven monitoring solutions.
-Experienced in designing and developing end-to-end systems starting from hardware integration (sensors and microcontrollers),
-data transmission over network, cloud-based storage, and real-time analytics dashboards.
-</p>
+  <main>
+    <section id="about">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">About</p>
+          <h2 class="section-title">End-to-end automation builder.</h2>
+        </div>
+        <p class="section-desc">
+          From sensor wiring and firmware logic to API endpoints, database logging,
+          messaging bots, and dashboard visibility.
+        </p>
+      </div>
 
-<p>
-Focused on transforming conventional manual processes into efficient, automated, and scalable digital systems.
-Strong experience in integrating IoT devices (ESP8266, sensors), backend systems (Google Apps Script, Google Sheets),
-and visualization tools (Power BI) into a unified operational platform.
-</p>
+      <div class="about-grid">
+        <div class="panel">
+          <p>
+            I design practical systems that turn manual operational processes into structured,
+            measurable, and automated workflows. My work connects field devices, backend services,
+            chat platforms, Google Workspace, databases, and business dashboards into one usable flow.
+          </p>
+          <p>
+            The main goal is simple: faster response, cleaner data, realtime visibility, and reliable
+            production systems that operators can actually use every day.
+          </p>
+        </div>
 
-<p>
-Key strengths include system integration, automation design, and building practical low-cost solutions
-with high operational impact in real-world environments.
-</p>
+        <div class="metric-grid">
+          <div class="metric">
+            <strong>24/7</strong>
+            <span>Realtime monitoring and alerting system mindset.</span>
+          </div>
+          <div class="metric">
+            <strong>Low Cost</strong>
+            <span>Practical in-house engineering with measurable impact.</span>
+          </div>
+          <div class="metric">
+            <strong>ChatOps</strong>
+            <span>WhatsApp and Telegram workflows for daily operations.</span>
+          </div>
+          <div class="metric">
+            <strong>Data</strong>
+            <span>Google Sheets, PostgreSQL, logs, and Power BI dashboards.</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<p style="text-align:center;">
-  <b>For detailed projects, please click on the sections below:</b>
-</p>
+    <section id="projects">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Projects</p>
+          <h2 class="section-title">Operational systems portfolio.</h2>
+        </div>
+        <p class="section-desc">
+          Select a project to view architecture, workflow, technologies, and screenshots.
+        </p>
+      </div>
 
-<h3 style="text-align:center; margin-top:20px;">Projects</h3>
+      <div class="project-menu" role="tablist" aria-label="Project tabs">
+        <button class="project-tab active" type="button" data-target="robot" role="tab" aria-selected="true">
+          <img src="robot.png" alt="">
+          <span>ROBOT GA Automation</span>
+        </button>
+        <button class="project-tab" type="button" data-target="ews" role="tab" aria-selected="false">
+          <img src="ews.png" alt="">
+          <span>Telegram EWS Notification</span>
+        </button>
+        <button class="project-tab" type="button" data-target="energy" role="tab" aria-selected="false">
+          <img src="energy.png" alt="">
+          <span>Energy Monitoring</span>
+        </button>
+        <button class="project-tab" type="button" data-target="automation" role="tab" aria-selected="false">
+          <img src="robot-ga.png" alt="">
+          <span>Checksheet, Webhook, Calendar</span>
+        </button>
+      </div>
 
-<div class="menu">
+      <article class="project-section active" id="robot">
+        <div class="project-card">
+          <div class="project-body">
+            <div class="project-content">
+              <h3>ROBOT GA - General Affairs Automation System</h3>
+              <p>
+                WhatsApp-based operational platform for support requests, abnormality reports,
+                event handling, ticket tracking, automated escalation, and management dashboards.
+              </p>
+              <div class="tag-row">
+                <span class="tag">Node.js</span>
+                <span class="tag">Express.js</span>
+                <span class="tag">Google Sheets API</span>
+                <span class="tag">Webhook Integration</span>
+                <span class="tag">Telegram Bot API</span>
+                <span class="tag">Power BI</span>
+              </div>
+              <ul class="feature-list">
+                <li>Automated ticket creation from WhatsApp messages.</li>
+                <li>Rule-based classification for requests, abnormalities, and event workflows.</li>
+                <li>Realtime dashboard for ticket status, SLA visibility, and operation trends.</li>
+                <li>Telegram forwarding layer for operator notification and escalation.</li>
+              </ul>
+            </div>
+            <div class="gallery">
+              <div class="img-wrap"><img src="dashboard1.png" alt="ROBOT GA dashboard overview" loading="lazy"><span class="zoom-label">View</span></div>
+              <div class="img-wrap"><img src="dashboard2.png" alt="ROBOT GA dashboard analytics" loading="lazy"><span class="zoom-label">View</span></div>
+              <div class="img-wrap"><img src="dashboard3.png" alt="ROBOT GA operational dashboard" loading="lazy"><span class="zoom-label">View</span></div>
+              <div class="img-wrap"><img src="dashboard4.png" alt="ROBOT GA report dashboard" loading="lazy"><span class="zoom-label">View</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
 
-  <div class="menu-item">
-    <img src="energy.png" class="menu-img" loading="lazy">
-    <button onclick="showSection('energy')">⚡ Energy Monitoring</button>
-  </div>
+      <article class="project-section" id="ews">
+        <div class="project-card">
+          <div class="project-body">
+            <div class="project-content">
+              <h3>Flood Early Warning System with Telegram Notification</h3>
+              <p>
+                IoT-based EWS that monitors water level conditions using multi-level sensors,
+                logs data, and sends realtime Telegram alerts for operational response.
+              </p>
+              <div class="tag-row">
+                <span class="tag">ESP8266 / Wemos</span>
+                <span class="tag">Sensor Integration</span>
+                <span class="tag">Telegram Bot API</span>
+                <span class="tag">Google Sheets API</span>
+                <span class="tag">MQTT</span>
+                <span class="tag">Realtime Notification</span>
+              </div>
+              <ul class="feature-list">
+                <li>Multi-level water status detection: safe, alert, warning, and danger.</li>
+                <li>Automatic Telegram notification for critical water level changes.</li>
+                <li>Google Sheets logging for incident history and monitoring records.</li>
+                <li>Command-based bot capability for status request and operator visibility.</li>
+              </ul>
+            </div>
+            <div class="gallery">
+              <div class="img-wrap"><img src="ews_banjir1.png" alt="EWS flood monitoring screenshot" loading="lazy"><span class="zoom-label">View</span></div>
+              <div class="img-wrap"><img src="ews_banjir2.png" alt="EWS flood notification screenshot" loading="lazy"><span class="zoom-label">View</span></div>
+              <div class="img-wrap"><img src="ews_banjir3.png" alt="EWS flood hardware screenshot" loading="lazy"><span class="zoom-label">View</span></div>
+              <div class="img-wrap"><img src="ews.png" alt="EWS project icon" loading="lazy"><span class="zoom-label">View</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
 
-  <div class="menu-item">
-    <img src="ews.png" class="menu-img" loading="lazy">
-    <button onclick="showSection('ews')">🌊 EWS Banjir</button>
-  </div>
+      <article class="project-section" id="energy">
+        <div class="project-card">
+          <div class="project-body">
+            <div class="project-content">
+              <h3>Electrical Energy Monitoring System</h3>
+              <p>
+                IoT energy monitoring platform for distribution panels using PZEM sensors,
+                ESP8266 communication, data logging, and Power BI visualization.
+              </p>
+              <div class="tag-row">
+                <span class="tag">ESP8266</span>
+                <span class="tag">PZEM Energy Monitoring</span>
+                <span class="tag">Serial Communication</span>
+                <span class="tag">Google Apps Script</span>
+                <span class="tag">Power BI Dashboard</span>
+                <span class="tag">Data Logging</span>
+              </div>
+              <ul class="feature-list">
+                <li>Realtime voltage, current, power, and kWh monitoring.</li>
+                <li>Low-cost IoT architecture from hardware sensor to analytics dashboard.</li>
+                <li>Historical data capture for energy usage analysis and optimization.</li>
+                <li>Dashboard visibility for operational and engineering decision support.</li>
+              </ul>
+            </div>
+            <div class="gallery">
+              <div class="img-wrap"><img src="energy_monitoring1.png" alt="Energy monitoring dashboard" loading="lazy"><span class="zoom-label">View</span></div>
+              <div class="img-wrap"><img src="energy_monitoring2.png" alt="Energy monitoring electrical data" loading="lazy"><span class="zoom-label">View</span></div>
+              <div class="img-wrap"><img src="energy_monitoring3.png" alt="Energy monitoring trend chart" loading="lazy"><span class="zoom-label">View</span></div>
+              <div class="img-wrap"><img src="energy.png" alt="Energy monitoring icon" loading="lazy"><span class="zoom-label">View</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
 
-  <div class="menu-item">
-    <img src="robot.png" class="menu-img" loading="lazy">
-    <button onclick="showSection('robot')">🤖 ROBOT GA</button>
-  </div>
+      <article class="project-section" id="automation">
+        <div class="project-card">
+          <div class="project-body">
+            <div class="project-content">
+              <h3>Digital Checksheet, Webhook, and Smart Calendar Automation</h3>
+              <p>
+                Backend automation suite for digital checksheets, WhatsApp-to-Google-Sheets webhook,
+                and smart event scheduling connected to Google Calendar and notification channels.
+              </p>
+              <div class="tag-row">
+                <span class="tag">Node.js</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">Google Calendar API</span>
+                <span class="tag">Google Sheets API</span>
+                <span class="tag">Telegram Bot API</span>
+                <span class="tag">MQTT</span>
+              </div>
+              <ul class="feature-list">
+                <li>Digital checksheet workflow for structured daily inspection and audit records.</li>
+                <li>Webhook bridge between WhatsApp automation and Google Sheets operational database.</li>
+                <li>Smart event and calendar automation for reminders, scheduling, and follow-up tracking.</li>
+                <li>PostgreSQL-ready backend for stronger persistence, reporting, and production scaling.</li>
+              </ul>
+            </div>
+            <div class="gallery single">
+              <div class="img-wrap"><img src="robot-ga.png" alt="Automation system visual" loading="lazy"><span class="zoom-label">View</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
 
+    <section id="skills">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Technical Skills</p>
+          <h2 class="section-title">Tools I use to ship systems.</h2>
+        </div>
+        <p class="section-desc">
+          Hardware, backend, automation, messaging, dashboards, and deployment in one stack.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>IoT & Embedded Systems</h3>
+          <div class="skill-list">
+            <span class="tag">ESP8266 / Wemos</span>
+            <span class="tag">PZEM Energy Monitoring</span>
+            <span class="tag">Sensor Integration</span>
+            <span class="tag">MQTT Communication</span>
+            <span class="tag">Serial Communication</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Backend & Automation</h3>
+          <div class="skill-list">
+            <span class="tag">Node.js</span>
+            <span class="tag">Express.js</span>
+            <span class="tag">REST API</span>
+            <span class="tag">Google Apps Script</span>
+            <span class="tag">Webhook Integration</span>
+            <span class="tag">Automation Workflow</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Messaging & Notification</h3>
+          <div class="skill-list">
+            <span class="tag">WhatsApp Automation</span>
+            <span class="tag">Telegram Bot Integration</span>
+            <span class="tag">Telegram Bot API</span>
+            <span class="tag">Realtime Notification System</span>
+            <span class="tag">Command-based Bot System</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Database & Dashboard</h3>
+          <div class="skill-list">
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Google Sheets API</span>
+            <span class="tag">Power BI Dashboard</span>
+            <span class="tag">Data Logging System</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Infrastructure & Deployment</h3>
+          <div class="skill-list">
+            <span class="tag">Ubuntu Server</span>
+            <span class="tag">PM2 Process Manager</span>
+            <span class="tag">VPS Deployment</span>
+            <span class="tag">Git & GitHub</span>
+            <span class="tag">Linux Administration</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Technologies</h3>
+          <div class="skill-list">
+            <span class="tag">Node.js</span>
+            <span class="tag">Google Calendar API</span>
+            <span class="tag">Telegram Bot API</span>
+            <span class="tag">Google Sheets API</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">MQTT</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="focus">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Engineering Focus</p>
+          <h2 class="section-title">Where the work creates impact.</h2>
+        </div>
+      </div>
+
+      <div class="focus-grid">
+        <div class="focus-item"><strong>Industrial Automation</strong><span>Digitizing repetitive field and operational processes.</span></div>
+        <div class="focus-item"><strong>IoT Monitoring System</strong><span>Sensor-to-dashboard visibility for equipment and infrastructure.</span></div>
+        <div class="focus-item"><strong>Smart Infrastructure</strong><span>Connected systems for safer and faster operational response.</span></div>
+        <div class="focus-item"><strong>Realtime Alerting System</strong><span>Telegram, WhatsApp, and event-based notification pipelines.</span></div>
+        <div class="focus-item"><strong>Operational Dashboard</strong><span>Power BI and database-backed views for decision support.</span></div>
+        <div class="focus-item"><strong>Energy Monitoring</strong><span>Electrical data capture, logging, and consumption analysis.</span></div>
+        <div class="focus-item"><strong>ChatOps Automation</strong><span>Command-based workflows for users, operators, and management.</span></div>
+        <div class="focus-item"><strong>Backend Integration</strong><span>API, webhook, Google Workspace, PostgreSQL, and bot integrations.</span></div>
+        <div class="focus-item"><strong>Production Reliability</strong><span>PM2, VPS deployment, Linux administration, and service monitoring.</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Dani Herdiana - IoT, Automation, Backend Integration, and Operational Dashboard Engineering.
+  </footer>
 </div>
-<!-- ENERGY -->
-<div id="energy" class="section">
 
-  <!-- JUDUL DI LUAR -->
-  <h2 style="margin-top:30px; margin-bottom:10px;">
-    ⚡ Energy Monitoring System
-  </h2>
-
-  <div class="card">
-    <p><b>Overview:</b><br>
-    An IoT-based electrical energy monitoring system designed to capture and analyze real-time
-    electrical parameters across distribution panels (LVMDP and sub-panels).
-    This system was fully designed and developed independently, covering hardware integration,
-    data transmission, and dashboard analytics.
-    </p>
-
-    <p><b>Objectives:</b></p>
-    <ul>
-      <li>Enable real-time monitoring of energy consumption</li>
-      <li>Reduce electrical energy waste</li>
-      <li>Provide historical data for analysis and optimization</li>
-    </ul>
-
-    <p><b>System Architecture:</b></p>
-    <ul>
-      <li>PZEM-004T → measures voltage, current, power, and energy (kWh)</li>
-      <li>ESP8266 (Wemos) → handles serial communication and WiFi transmission</li>
-      <li>Google Apps Script → acts as API endpoint</li>
-      <li>Google Sheets → serves as centralized database</li>
-      <li>Power BI → data visualization and analytics dashboard</li>
-    </ul>
-
-    <p><b>Data Flow:</b></p>
-    <ul>
-      <li>Sensors capture electrical parameters in real-time</li>
-      <li>ESP8266 sends data via HTTP requests</li>
-      <li>Data is logged into Google Sheets</li>
-      <li>Power BI automatically updates dashboard visualization</li>
-    </ul>
-
-    <p><b>Key Value:</b></p>
-    <ul>
-      <li>Fully self-developed end-to-end system (hardware to analytics)</li>
-      <li>Low-cost IoT implementation</li>
-      <li>Real-time monitoring capability</li>
-      <li>Supports data-driven energy efficiency decisions</li>
-    </ul>
-  </div>
-  <div class="grid">
-
-  <div class="img-wrap">
-    <img src="energy_monitoring1.png" loading="lazy">
-    <div class="zoom-btn">🔍 View</div>
-  </div>
-
-  <div class="img-wrap">
-    <img src="energy_monitoring2.png" loading="lazy">
-    <div class="zoom-btn">🔍 View</div>
-  </div>
-
-  <div class="img-wrap">
-    <img src="energy_monitoring3.png" loading="lazy">
-    <div class="zoom-btn">🔍 View</div>
-  </div>
-
-</div>
-
-</div>
-
-<!-- EWS -->
-<div id="ews" class="section">
-
-  <h2 style="margin-top:30px; margin-bottom:10px;">
-    🌊 Flood Early Warning System (EWS)
-  </h2>
-
-  <div class="card">
-    <p><b>Overview:</b><br>
-    An IoT-based flood early warning system utilizing multi-level float switches to detect water level changes
-    and trigger automatic alerts. The system was fully developed independently, covering sensor integration,
-    cloud logging, and multi-platform notification.
-    </p>
-
-    <p><b>Objectives:</b></p>
-    <ul>
-      <li>Provide early detection of potential flooding</li>
-      <li>Enable real-time alerting without manual monitoring</li>
-      <li>Deliver a low-cost and scalable monitoring solution</li>
-    </ul>
-
-    <p><b>System Architecture:</b></p>
-    <ul>
-      <li>4 Float Switch sensors (Safe, Alert Level 3, Level 2, Level 1)</li>
-      <li>ESP8266 (Wemos D1) as main controller</li>
-      <li>Google Sheets as centralized data logging</li>
-      <li>Telegram Bot for real-time alert notifications</li>
-      <li>WhatsApp Bot for user interaction and status queries</li>
-    </ul>
-
-    <p><b>System Flow:</b></p>
-    <ul>
-      <li>Water level rises → float switch is triggered</li>
-      <li>ESP8266 reads digital input from sensors</li>
-      <li>Status is sent to cloud (Google Sheets)</li>
-      <li>Automatic alerts are triggered via Telegram and WhatsApp</li>
-    </ul>
-
-    <p><b>User Accessibility:</b></p>
-    <ul>
-      <li>All employees can access real-time flood status via WhatsApp bot</li>
-      <li>Users can request water level updates through chat commands</li>
-      <li>Significantly improves communication speed and situational awareness</li>
-    </ul>
-
-    <p><b>Key Advantages:</b></p>
-    <ul>
-      <li>Ultra low-cost implementation (~Rp 120,000)</li>
-      <li>Real-time monitoring without delay</li>
-      <li>Multi-platform integration (WhatsApp & Telegram)</li>
-      <li>Historical data logging for analysis</li>
-      <li>Improves operational communication efficiency across employees</li>
-    </ul>
-  </div>
-
-  <div class="grid">
-
-  <div class="img-wrap">
-    <img src="ews_banjir1.png" loading="lazy">
-    <div class="zoom-btn">🔍 View</div>
-  </div>
-
-  <div class="img-wrap">
-    <img src="ews_banjir2.png" loading="lazy">
-    <div class="zoom-btn">🔍 View</div>
-  </div>
-
-  <div class="img-wrap">
-    <img src="ews_banjir3.png" loading="lazy">
-    <div class="zoom-btn">🔍 View</div>
-  </div>
-
-</div>
-</div>
-
-<!-- ROBOT -->
-<div id="robot" class="section">
-
-  <!-- JUDUL DI LUAR -->
-  <h2 style="margin-top:30px; margin-bottom:10px;">
-    🤖 ROBOT GA (General Affairs Automation System)
-  </h2>
-
-  <div class="card">
-    <p><b>Overview:</b><br>
-    An integrated operational platform built on WhatsApp to handle support requests,
-    abnormalities, and event management in a structured and automated workflow.
-    The system was fully designed and developed independently, covering bot logic,
-    data handling, and dashboard integration.
-    </p>
-
-    <p><b>Problems:</b></p>
-    <ul>
-      <li>Unstructured manual request handling</li>
-      <li>No status tracking system</li>
-      <li>No centralized historical data</li>
-    </ul>
-
-    <p><b>Solution:</b></p>
-    <ul>
-      <li>WhatsApp bot as the main entry point</li>
-      <li>Automated ticketing system</li>
-      <li>Real-time dashboard monitoring</li>
-      <li>Automated notifications and escalation</li>
-    </ul>
-
-    <p><b>System Architecture:</b></p>
-    <ul>
-      <li>User → WhatsApp</li>
-      <li>Bot Engine (Node.js)</li>
-      <li>Google Sheets (single source of truth database)</li>
-      <li>Web Dashboard (monitoring & control)</li>
-      <li>Telegram (notification & forwarding layer)</li>
-    </ul>
-
-    <p><b>System Flow:</b></p>
-    <ul>
-      <li>User submits request via WhatsApp</li>
-      <li>Bot performs rule-based classification</li>
-      <li>Automatic ticket generation</li>
-      <li>Data stored in Google Sheets</li>
-      <li>Operator updates ticket status</li>
-      <li>System sends automatic notifications</li>
-    </ul>
-
-    <p><b>Key Features:</b></p>
-    <ul>
-      <li>Deterministic classification (no NLP ambiguity)</li>
-      <li>Automated SLA tracking</li>
-      <li>User rating system</li>
-      <li>Multi-role access (User / Operator / Executive)</li>
-      <li>Real-time dashboard analytics</li>
-    </ul>
-
-    <p><b>User & Operational Impact:</b></p>
-    <ul>
-      <li>Simplifies reporting process for all employees</li>
-      <li>Improves response speed and operational efficiency</li>
-      <li>Provides full transparency for both employees and management</li>
-      <li>Increases team productivity through structured workflow</li>
-      <li>Employees can independently check their ticket status via WhatsApp</li>
-    </ul>
-
-    <p><b>Business Impact:</b></p>
-    <ul>
-      <li>Fully digital and automated operational process</li>
-      <li>Improved visibility and accountability</li>
-      <li>Significant efficiency improvement across operations</li>
-      <li>Cost saving up to ± Rp 1 Billion (in-house development)</li>
-    </ul>
-  </div>
-
-  <div class="grid">
-
-  <div class="img-wrap">
-    <img src="dashboard1.png" loading="lazy">
-    <div class="zoom-btn">🔍 View</div>
-  </div>
-
-  <div class="img-wrap">
-    <img src="dashboard2.png" loading="lazy">
-    <div class="zoom-btn">🔍 View</div>
-  </div>
-
-  <div class="img-wrap">
-    <img src="dashboard3.png" loading="lazy">
-    <div class="zoom-btn">🔍 View</div>
-  </div>
-
-  <div class="img-wrap">
-    <img src="dashboard4.png" loading="lazy">
-    <div class="zoom-btn">🔍 View</div>
-  </div>
-
-</div>
-</div>
-
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" type="button" aria-label="Close image preview">&times;</button>
+  <img id="lightbox-img" alt="">
 </div>
 
 <script>
-window.onload = function() {
+const tabs = document.querySelectorAll(".project-tab");
+const sections = document.querySelectorAll(".project-section");
 
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
+tabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    const targetId = tab.dataset.target;
 
-  document.querySelectorAll('.img-wrap').forEach(function(wrap) {
+    tabs.forEach((item) => {
+      item.classList.toggle("active", item === tab);
+      item.setAttribute("aria-selected", item === tab ? "true" : "false");
+    });
 
-    wrap.onclick = function() {
-      const img = this.querySelector('img');
-
-      if (img) {
-        lightbox.style.display = 'flex';
-        lightboxImg.src = img.src;
-      }
-    };
-
+    sections.forEach((section) => {
+      section.classList.toggle("active", section.id === targetId);
+    });
   });
+});
 
-  // close saat klik background
-  lightbox.onclick = function(e) {
-    if (e.target === lightbox) {
-      lightbox.style.display = 'none';
-    }
-  };
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+const closeLightbox = document.querySelector(".lightbox-close");
 
-};
-</script>
-
-<script>
-function showSection(id) {
-  const sections = document.querySelectorAll('.section');
-
-  sections.forEach(s => {
-    s.classList.remove('active');
+document.querySelectorAll(".img-wrap").forEach((wrap) => {
+  wrap.addEventListener("click", () => {
+    const image = wrap.querySelector("img");
+    lightboxImg.src = image.src;
+    lightboxImg.alt = image.alt;
+    lightbox.classList.add("active");
+    lightbox.setAttribute("aria-hidden", "false");
   });
+});
 
-  const target = document.getElementById(id);
-
-  if (target) {
-    setTimeout(() => {
-      target.classList.add('active');
-    }, 100); // delay kecil biar animasi smooth
-  }
+function hideLightbox() {
+  lightbox.classList.remove("active");
+  lightbox.setAttribute("aria-hidden", "true");
+  lightboxImg.src = "";
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  showSection('robot'); // default
+closeLightbox.addEventListener("click", hideLightbox);
+lightbox.addEventListener("click", (event) => {
+  if (event.target === lightbox) hideLightbox();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && lightbox.classList.contains("active")) {
+    hideLightbox();
+  }
 });
 </script>
-
-  <div id="lightbox" style="
-  display:none;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.9);
-  justify-content:center;
-  align-items:center;
-  z-index:999;
-">
-  <img id="lightbox-img" style="max-width:90%; max-height:90%;">
-</div>
 </body>
 </html>
