@@ -585,6 +585,115 @@ section {
   font-size: 14px;
 }
 
+.contact-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.contact-email {
+  color: var(--accent);
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 800;
+  line-height: 1.16;
+  word-break: break-word;
+}
+
+.comment-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
+  gap: 18px;
+}
+
+.comment-form {
+  display: grid;
+  gap: 12px;
+}
+
+.field {
+  display: grid;
+  gap: 7px;
+}
+
+.field span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+  font: inherit;
+}
+
+.field input {
+  min-height: 44px;
+  padding: 0 12px;
+}
+
+.field textarea {
+  min-height: 132px;
+  padding: 10px 12px;
+  resize: vertical;
+}
+
+.comment-list {
+  display: grid;
+  gap: 12px;
+}
+
+.comment-item {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(18, 37, 41, 0.76);
+}
+
+.comment-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.comment-meta strong {
+  font-size: 15px;
+}
+
+.comment-meta span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.comment-item p {
+  margin: 10px 0 14px;
+  color: #d5e2df;
+  white-space: pre-wrap;
+}
+
+.btn-danger {
+  min-height: 34px;
+  padding: 0 11px;
+  color: #ffe4e9;
+  border-color: rgba(251, 113, 133, 0.38);
+  background: rgba(251, 113, 133, 0.12);
+}
+
+.empty-comments {
+  margin: 0;
+  padding: 18px;
+  border: 1px dashed rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  color: var(--muted);
+  text-align: center;
+}
+
 .footer {
   width: min(1180px, calc(100% - 32px));
   margin: 0 auto;
@@ -635,7 +744,8 @@ section {
 @media (max-width: 980px) {
   .hero,
   .about-grid,
-  .project-body {
+  .project-body,
+  .comment-layout {
     grid-template-columns: 1fr;
   }
 
@@ -673,7 +783,8 @@ section {
   }
 
   .hero-actions,
-  .section-head {
+  .section-head,
+  .contact-panel {
     align-items: stretch;
     flex-direction: column;
   }
@@ -715,6 +826,8 @@ section {
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#focus">Focus</a>
+        <a href="#contact">Contact</a>
+        <a href="#comments">Comments</a>
       </div>
     </div>
   </nav>
@@ -1066,6 +1179,50 @@ section {
         <div class="focus-item"><strong>Production Reliability</strong><span>PM2, VPS deployment, Linux administration, and service monitoring.</span></div>
       </div>
     </section>
+
+    <section id="contact">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Contact</p>
+          <h2 class="section-title">Let us connect.</h2>
+        </div>
+      </div>
+
+      <div class="panel contact-panel">
+        <div>
+          <p>Email for collaboration, project discussion, or technical opportunities.</p>
+        </div>
+        <a class="contact-email" href="mailto:herdiana.dani@gmail.com">herdiana.dani@gmil.com</a>
+      </div>
+    </section>
+
+    <section id="comments">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Comments</p>
+          <h2 class="section-title">Visitor comments.</h2>
+        </div>
+        <p class="section-desc">
+          Comments are saved in this browser and can be deleted anytime.
+        </p>
+      </div>
+
+      <div class="comment-layout">
+        <form class="panel comment-form" id="comment-form">
+          <label class="field">
+            <span>Name</span>
+            <input id="comment-name" type="text" name="name" maxlength="60" required>
+          </label>
+          <label class="field">
+            <span>Comment</span>
+            <textarea id="comment-message" name="message" maxlength="500" required></textarea>
+          </label>
+          <button class="btn btn-primary" type="submit">Save Comment</button>
+        </form>
+
+        <div class="comment-list" id="comment-list" aria-live="polite"></div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
@@ -1127,6 +1284,94 @@ document.addEventListener("keydown", (event) => {
     hideLightbox();
   }
 });
+
+const commentForm = document.getElementById("comment-form");
+const commentName = document.getElementById("comment-name");
+const commentMessage = document.getElementById("comment-message");
+const commentList = document.getElementById("comment-list");
+const commentStorageKey = "dani-portfolio-comments";
+
+function getComments() {
+  try {
+    return JSON.parse(localStorage.getItem(commentStorageKey)) || [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveComments(comments) {
+  localStorage.setItem(commentStorageKey, JSON.stringify(comments));
+}
+
+function createCommentId() {
+  if (globalThis.crypto?.randomUUID) return globalThis.crypto.randomUUID();
+  return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
+function renderComments() {
+  const comments = getComments();
+  commentList.innerHTML = "";
+
+  if (comments.length === 0) {
+    commentList.innerHTML = '<p class="empty-comments">No comments saved yet.</p>';
+    return;
+  }
+
+  comments.forEach((comment) => {
+    const item = document.createElement("article");
+    item.className = "comment-item";
+
+    const meta = document.createElement("div");
+    meta.className = "comment-meta";
+
+    const name = document.createElement("strong");
+    name.textContent = comment.name;
+
+    const date = document.createElement("span");
+    date.textContent = comment.date;
+
+    const message = document.createElement("p");
+    message.textContent = comment.message;
+
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "btn btn-danger";
+    deleteButton.type = "button";
+    deleteButton.textContent = "Delete";
+    deleteButton.addEventListener("click", () => {
+      saveComments(getComments().filter((item) => item.id !== comment.id));
+      renderComments();
+    });
+
+    meta.append(name, date);
+    item.append(meta, message, deleteButton);
+    commentList.append(item);
+  });
+}
+
+commentForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const comment = {
+    id: createCommentId(),
+    name: commentName.value.trim(),
+    message: commentMessage.value.trim(),
+    date: new Date().toLocaleString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit"
+    })
+  };
+
+  if (!comment.name || !comment.message) return;
+
+  saveComments([comment, ...getComments()]);
+  commentForm.reset();
+  renderComments();
+});
+
+renderComments();
 </script>
 </body>
 </html>
