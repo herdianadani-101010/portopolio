@@ -53,5 +53,5 @@ Water level monitoring system with automatic alerting.
 ---
 
 ## 📫 Contact
-- Email: (isi email kamu)
-- WhatsApp: (isi nomor kamu)
+- Email: (herdiana.dani@gmail.com )
+- WhatsApp: (082121236094)
